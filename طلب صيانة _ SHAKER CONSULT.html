@@ -1,0 +1,267 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>طلب صيانة | SHAKER CONSULT</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Readex+Pro:wght@500;600&display=swap">
+<style>
+:root {
+  --bg: #EBF0F2; --surface: #FFFFFF; --ink: #12252E; --muted: #58707B; --line: #D2DCE1;
+  --accent: #0D5C8F; --accent-ink: #FFFFFF; --accent-soft: #DBEAF5; --danger: #A3281C; --ok: #25692A;
+  --f-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+  --f-display: "Readex Pro", "IBM Plex Sans Arabic", Tahoma, Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1A20; --surface: #16252D; --ink: #E6EEF1; --muted: #93A9B3; --line: #2A3F49;
+    --accent: #5FB0E6; --accent-ink: #0A1A22; --accent-soft: #1D3A4C; --danger: #F29A93; --ok: #7FD18A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1A20; --surface: #16252D; --ink: #E6EEF1; --muted: #93A9B3; --line: #2A3F49;
+    --accent: #5FB0E6; --accent-ink: #0A1A22; --accent-soft: #1D3A4C; --danger: #F29A93; --ok: #7FD18A;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  direction: rtl;
+  margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.7;
+  padding: 18px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left));
+}
+.shell { max-width: 640px; margin-inline: auto; display: grid; gap: 22px; }
+h1 { font-family: var(--f-display); font-weight: 600; font-size: 26px; line-height: 1.35; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.top { display: flex; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.mark { flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; }
+.brand { font-family: var(--f-display); font-weight: 600; font-size: 17px; line-height: 1.3; direction: ltr; text-align: right; }
+.sub { font-size: 13px; color: var(--muted); }
+.lede { display: grid; gap: 8px; }
+.lede p { color: var(--muted); }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 20px; }
+.field { display: grid; gap: 8px; min-width: 0; }
+fieldset.field { border: 0; padding: 0; margin: 0; }
+.label { font-weight: 600; font-size: 15px; padding: 0; }
+.hint { font-size: 13px; color: var(--muted); font-weight: 400; }
+.input, .select, .textarea { width: 100%; min-height: 48px; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 10px 14px; }
+.textarea { min-height: 112px; resize: vertical; }
+.input:focus, .select:focus, .textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+[aria-invalid="true"] { border-color: var(--danger); }
+.err { color: var(--danger); font-size: 14px; font-weight: 500; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip span { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-weight: 500; font-size: 15px; }
+.chip input:checked + span { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.seg .chip span { width: 100%; justify-content: center; text-align: center; flex-direction: column; line-height: 1.35; padding: 8px; }
+.seg small { font-size: 12px; font-weight: 400; color: var(--muted); }
+.seg .chip input:checked + span small { color: inherit; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 8px 20px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-weight: 600; cursor: pointer; text-decoration: none; color: var(--ink); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.note { font-size: 14px; color: var(--muted); }
+.done { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px 20px; display: grid; gap: 14px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .04em; color: var(--ok); }
+.no { font-family: var(--f-mono); font-size: 34px; font-weight: 500; direction: ltr; text-align: right; letter-spacing: .06em; }
+.steps { margin: 0; padding-inline-start: 22px; display: grid; gap: 4px; color: var(--muted); }
+.steps li::marker { color: var(--accent); font-weight: 700; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.num { font-family: var(--f-mono); direction: ltr; unicode-bidi: isolate; }
+@media (max-width: 520px) { .row2 { grid-template-columns: minmax(0, 1fr); } h1 { font-size: 23px; } .sheet { padding: 16px; } }
+</style>
+<div dir="rtl" lang="ar">
+<div class="shell">
+  <header class="top">
+    <span class="mark" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><polygon points="12,2.5 20.5,7.25 20.5,16.75 12,21.5 3.5,16.75 3.5,7.25"/><circle cx="12" cy="12" r="3.2"/></svg>
+    </span>
+    <div>
+      <div class="brand" id="brand">SHAKER CONSULT</div>
+      <div class="sub">خدمات الصيانة للشقق والعمارات والمحلات</div>
+    </div>
+  </header>
+
+  <section id="formView">
+    <div class="lede">
+      <h1>اطلب فني صيانة</h1>
+      <p>املأ البيانات واضغط إرسال، فيفتح واتساب برسالة جاهزة لنا. نتصل بك لتحديد موعد المعاينة، ثم نرسل عرض السعر، ولا يبدأ التنفيذ إلا بعد موافقتك.</p>
+    </div>
+
+    <form class="sheet" id="reqForm" novalidate style="margin-top:22px">
+      <fieldset class="field">
+        <legend class="label">نوع المشكلة</legend>
+        <div class="chips" id="catChips"></div>
+        <p class="err" id="err-category" hidden></p>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend class="label">المكان</legend>
+        <div class="chips" id="placeChips"></div>
+      </fieldset>
+
+      <div class="field">
+        <label class="label" for="f-desc">وصف المشكلة</label>
+        <textarea class="textarea" id="f-desc" placeholder="مثال: تسريب مياه من ماسورة الحمام منذ يومين، والتسريب يزيد عند فتح الدش"></textarea>
+        <p class="err" id="err-desc" hidden></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-addr">العنوان</label>
+        <input class="input" id="f-addr" type="text" autocomplete="street-address" placeholder="الحي، الشارع، رقم العمارة والدور">
+        <p class="err" id="err-addr" hidden></p>
+      </div>
+
+      <fieldset class="field">
+        <legend class="label">مدى الاستعجال</legend>
+        <div class="seg" id="urgChips"></div>
+      </fieldset>
+
+      <div class="row2">
+        <div class="field">
+          <label class="label" for="f-date">يوم المعاينة المناسب <span class="hint">(اختياري)</span></label>
+          <input class="input" id="f-date" type="date">
+        </div>
+        <div class="field">
+          <label class="label" for="f-window">الفترة المناسبة</label>
+          <select class="select" id="f-window"></select>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label class="label" for="f-name">الاسم</label>
+          <input class="input" id="f-name" type="text" autocomplete="name">
+          <p class="err" id="err-name" hidden></p>
+        </div>
+        <div class="field">
+          <label class="label" for="f-phone">رقم الموبايل</label>
+          <input class="input num" id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01xxxxxxxxx" style="text-align:right">
+          <p class="err" id="err-phone" hidden></p>
+        </div>
+      </div>
+
+      <button class="btn primary" type="submit">إرسال الطلب عبر واتساب</button>
+      <p class="note">بعد فتح واتساب، يمكنك إرفاق صور المشكلة في نفس المحادثة.</p>
+    </form>
+  </section>
+
+  <section class="done" id="doneView" role="status" hidden>
+    <p class="eyebrow">الرسالة جاهزة</p>
+    <p class="no" id="doneNo"></p>
+    <p>إذا لم يفتح واتساب تلقائيًا، اضغط الزر التالي. أرسل الرسالة كما هي، وأرفق صور المشكلة إن وجدت.</p>
+    <div class="actions">
+      <a class="btn primary" id="waBtn" href="#" target="_blank" rel="noopener">فتح واتساب</a>
+      <button class="btn" type="button" id="copyBtn">نسخ نص الطلب</button>
+      <button class="btn" type="button" id="againBtn">طلب آخر</button>
+    </div>
+    <ol class="steps">
+      <li>نراجع الطلب</li>
+      <li>نحدد معك موعد المعاينة</li>
+      <li>نرسل عرض السعر، وتوافق عليه قبل بدء التنفيذ</li>
+    </ol>
+    <p class="note" id="copyMsg" hidden>تم النسخ.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  // ===== إعدادات: غيّر الاسم والرقم هنا فقط =====
+  var COMPANY = 'SHAKER CONSULT';
+  var WHATSAPP = '201068899698'; // رقم واتساب الشركة بالصيغة الدولية بدون + أو أصفار
+  // ================================================
+
+  var CATS = { electric: 'كهرباء', plumbing: 'سباكة', hvac: 'تكييف', carpentry: 'نجارة وأبواب', paint: 'دهانات وتشطيب', other: 'أخرى' };
+  var PLACES = { flat: 'شقة', building: 'عمارة / أجزاء مشتركة', shop: 'محل', office: 'مكتب' };
+  var URG = { normal: ['عادي', 'خلال أيام'], urgent: ['عاجل', 'خلال 24 ساعة'], emergency: ['طارئ', 'الآن'] };
+  var WINDOWS = { any: 'أي وقت', morning: 'صباحًا', noon: 'ظهرًا', evening: 'مساءً' };
+
+  function $(id) { return document.getElementById(id); }
+  function norm(s) { return String(s || '').replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); }); }
+  function val(name) { var e = document.querySelector('input[name="' + name + '"]:checked'); return e ? e.value : ''; }
+  function chip(name, v, label, checked, extra) {
+    return '<label class="chip"><input type="radio" id="' + name + '-' + v + '" name="' + name + '" value="' + v + '"' + (checked ? ' checked' : '') + '><span>' + label + (extra || '') + '</span></label>';
+  }
+  function setErr(id, field, msg) {
+    var e = $('err-' + id);
+    if (msg) { e.textContent = msg; e.hidden = false; } else { e.hidden = true; }
+    if (field) field.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function ticket() { return Math.floor(Math.random() * 60466176).toString(36).padStart(5, '0').toUpperCase(); }
+
+  $('brand').textContent = COMPANY;
+  $('catChips').innerHTML = Object.keys(CATS).map(function (k) { return chip('category', k, CATS[k], false); }).join('');
+  $('placeChips').innerHTML = Object.keys(PLACES).map(function (k, i) { return chip('place', k, PLACES[k], i === 0); }).join('');
+  $('urgChips').innerHTML = Object.keys(URG).map(function (k, i) { return chip('urgency', k, URG[k][0], i === 0, '<small>' + URG[k][1] + '</small>'); }).join('');
+  $('f-window').innerHTML = Object.keys(WINDOWS).map(function (k) { return '<option value="' + k + '">' + WINDOWS[k] + '</option>'; }).join('');
+  (function () {
+    var t = new Date(), p = function (x) { return String(x).padStart(2, '0'); };
+    $('f-date').min = t.getFullYear() + '-' + p(t.getMonth() + 1) + '-' + p(t.getDate());
+    try {
+      var prof = JSON.parse(localStorage.getItem('req-profile') || 'null');
+      if (prof) { $('f-name').value = prof.name || ''; $('f-phone').value = prof.phone || ''; }
+    } catch (e) {}
+  })();
+
+  var lastText = '';
+
+  $('reqForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var name = $('f-name').value.trim(), phoneRaw = norm($('f-phone').value).trim(), phone = phoneRaw.replace(/\D/g, '');
+    var desc = $('f-desc').value.trim(), addr = $('f-addr').value.trim(), cat = val('category');
+    var bad = [];
+    setErr('category', null, cat ? '' : 'اختر نوع المشكلة.'); if (!cat) bad.push($('category-electric'));
+    setErr('desc', $('f-desc'), desc.length >= 6 ? '' : 'اكتب وصفًا قصيرًا للمشكلة.'); if (desc.length < 6) bad.push($('f-desc'));
+    setErr('addr', $('f-addr'), addr.length >= 4 ? '' : 'اكتب العنوان بالتفصيل ليصلك الفني.'); if (addr.length < 4) bad.push($('f-addr'));
+    setErr('name', $('f-name'), name.length >= 2 ? '' : 'اكتب اسمك.'); if (name.length < 2) bad.push($('f-name'));
+    var ok = phone.length >= 10 && phone.length <= 13;
+    setErr('phone', $('f-phone'), ok ? '' : 'اكتب رقم موبايل صحيح، مثل 01012345678.'); if (!ok) bad.push($('f-phone'));
+    if (bad.length) { bad[0].focus(); return; }
+
+    try { localStorage.setItem('req-profile', JSON.stringify({ name: name, phone: phoneRaw })); } catch (e) {}
+
+    var no = ticket(), d = $('f-date').value, w = WINDOWS[$('f-window').value];
+    var lines = [
+      'طلب صيانة جديد - ' + COMPANY,
+      'رقم الطلب: #' + no,
+      'النوع: ' + CATS[cat],
+      'المكان: ' + PLACES[val('place')],
+      'المشكلة: ' + desc,
+      'العنوان: ' + addr,
+      'الاستعجال: ' + URG[val('urgency') || 'normal'][0],
+      'الموعد المفضل: ' + (d ? d + ' - ' : '') + w,
+      'الاسم: ' + name,
+      'الموبايل: ' + phoneRaw
+    ];
+    lastText = lines.join('\n');
+    var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lastText);
+    $('waBtn').href = url;
+    $('doneNo').textContent = '#' + no;
+    $('formView').hidden = true; $('doneView').hidden = false;
+    window.scrollTo(0, 0);
+    window.open(url, '_blank');
+  });
+
+  $('copyBtn').addEventListener('click', function () {
+    var m = $('copyMsg');
+    function ok(t) { m.textContent = t; m.hidden = false; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastText).then(function () { ok('تم النسخ.'); }, function () { ok('تعذر النسخ، استخدم زر واتساب.'); });
+    } else { ok('تعذر النسخ، استخدم زر واتساب.'); }
+  });
+  $('againBtn').addEventListener('click', function () {
+    $('f-desc').value = ''; $('f-addr').value = ''; $('f-date').value = '';
+    var c = document.querySelector('input[name="category"]:checked'); if (c) c.checked = false;
+    $('copyMsg').hidden = true;
+    $('doneView').hidden = true; $('formView').hidden = false;
+    $('f-desc').focus();
+  });
+})();
+</script>
+</div>
+
+</body></html>
